@@ -1,0 +1,21 @@
+---
+- hosts: cisco
+  connection: network_cli
+  gather_facts: False
+  vars:
+    desired_version: "7.0(3)I7(1)"
+  tasks:
+    - name: gathering nxos facts
+      nxos_facts:
+        provider: "{{login_info}}"
+      register: all_facts
+
+#    - debug:
+#        var: all_facts
+
+    - name: create HTML report
+      template:
+        src: report.j2
+        dest: /var/www/html/generated_report.html
+      delegate_to: localhost
+      run_once: true
