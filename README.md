@@ -15,18 +15,18 @@ Only two modules are needed for this example.  The [nxos_facts module][1] and
 the [template module][5]
 ```
 ---
-  - name: build IOS inventory report
+  - name: build NXOS inventory report
     hosts: nxos
     connection: network_cli
     gather_facts:  False
 
     vars:
-       desired_ios_version: "16.06.01"
+       desired_version: "16.06.01"
        file_path: Inventory-flask/static/index.html
 
     tasks:
 
-      - name: gathering IOS facts
+      - name: gathering NXOS facts
         nxos_facts:
         register: all_facts
 
